@@ -4,15 +4,15 @@
 * Minimum API level - 24, target API level - latest
 * Project language - Kotlin
 * Focus on quality over quantity e.g.
-    ** Clean code, readability, consistency
-    ** UI performance
-    ** Material UI guidelines
+    * Clean code, readability, consistency
+    * UI performance
+    * Material UI guidelines
 * Must to be used:
-    ** Retrofit
-    ** coroutines/RxJava or both
-    ** Databinding
-    ** androidX: LiveData, ViewModel, Navigation
-    ** styling technics (themes + styles)
+    * Retrofit
+    * coroutines/RxJava or both
+    * Databinding
+    * androidX: LiveData, ViewModel, Navigation
+    * styling technics (themes + styles)
 * Feel free to use any other tools, libraries, technics and patterns you like to work with
 * Make sure the project runs out of the box on our side
 * Make sure the app runs both in portrait and landscape mode and state is preserved when configuration is changed
@@ -22,10 +22,10 @@
 * Create an Activity where the user can search for repositories on GitHub)
 * Display the list of repositories
 * Each item should contain
-    ** The avatar image of the owner
-    ** The repository name
-    ** The description
-    ** The number of forks
+    * The avatar image of the owner
+    * The repository name
+    * The description
+    * The number of forks
 * API requires authentication
 
 For information on the GitHub API [see](https://docs.github.com/en/rest)
