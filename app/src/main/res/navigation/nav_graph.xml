@@ -20,10 +20,27 @@
         android:name="com.codechallenge.githubrepositories.ui.search.SearchFragment"
         android:label="SearchFragment" >
         <argument
-            android:name="user"
+            android:name="user_name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.codechallenge.githubrepositories.ui.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="repositoryName"
             app:argType="string" />
         <argument
-            android:name="authToken"
+            android:name="ownerName"
             app:argType="string" />
+        <argument
+            android:name="watchersCount"
+            app:argType="integer" />
     </fragment>
 </navigation>

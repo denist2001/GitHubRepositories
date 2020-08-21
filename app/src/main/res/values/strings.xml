@@ -3,4 +3,6 @@
     <string name="password_optional">password (optional)</string>
     <string name="two_factor_authentication">two-factor authentication</string>
     <string name="login">login</string>
+    <string name="watchers_count">Watchers count: </string>
+    <string name="watchers">Watchers: </string>
 </resources>

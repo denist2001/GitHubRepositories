@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.codechallenge.githubrepositories.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*
@@ -21,10 +21,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
 
-    companion object {
-        const val ERROR = "ERROR"
-    }
-
     @Inject
     lateinit var prefsProvider: SharedPreferencesProvider
     private val viewModel by viewModels<LoginViewModel>()
@@ -34,32 +30,36 @@ class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUserName()
+        setupPassword()
         setupLoginButton()
         startEventsObserving()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     private fun startEventsObserving() {
-        viewModel.state.observe(viewLifecycleOwner, Observer<LoginViewModelState> { state ->
+        viewModel.state.observe(viewLifecycleOwner, { state ->
             when (state) {
-                is LoginViewModelState.UserAuthorised -> userAuthorized(
-                    state.userName,
-                    state.authHeader
-                )
-                is LoginViewModelState.AuthorizationError -> Toast.makeText(
-                    requireContext(),
-                    state.message,
-                    Toast.LENGTH_LONG
-                ).show()
+                is LoginViewModelState.UserAuthorised -> {
+                    isInProgress(false)
+                    userAuthorized(
+                        state.userName,
+                        state.authHeader
+                    )
+                }
+                is LoginViewModelState.AuthorizationError -> {
+                    isInProgress(false)
+                    Toast.makeText(
+                        requireContext(),
+                        state.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         })
     }
 
     private fun userAuthorized(userName: String, authHeader: String) {
         prefsProvider.addUser(userName, authHeader)
+        goOnSearchFragment(userName)
     }
 
     private fun setupUserName() {
@@ -90,6 +90,22 @@ class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
         })
     }
 
+    private fun setupPassword() {
+        password_et.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+                //do nothing
+            }
+
+            override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+                //do nothing
+            }
+
+            override fun afterTextChanged(p0: Editable) {
+                login_bn.isEnabled = true
+            }
+        })
+    }
+
     private fun setupLoginButton() {
         login_bn.setOnClickListener { view ->
             run {
@@ -97,11 +113,19 @@ class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
                 val password = password_et.text.toString()
                 val token = twoFA_et.text.toString()
                 if (twoFactorToken.isNullOrEmpty()) {
+                    isInProgress(true)
                     logIn(user, password, null)
                     return@run
                 }
-
+                goOnSearchFragment(user)
             }
+        }
+    }
+
+    private fun goOnSearchFragment(userName: String?) {
+        userName?.let {
+            val action = LoginFragmentDirections.actionLoginFragmentToSearchFragment(it)
+            findNavController().navigate(action)
         }
     }
 
@@ -111,6 +135,7 @@ class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
             return
         }
         userName = user
+        isInProgress(true)
         viewModel.onAction(LoginViewModelAction.AuthorisationRequest(user, password, token))
     }
 
@@ -120,6 +145,14 @@ class LoginFragment : Fragment(R.layout.login_fragment), LifecycleOwner {
             false -> R.drawable.ic_baseline_lock_open_24
         }
         checkmark.setImageResource(resource)
+    }
+
+    private fun isInProgress(inProgress: Boolean) {
+        val visibility = when (inProgress) {
+            true -> View.VISIBLE
+            false -> View.INVISIBLE
+        }
+        progressBar.visibility = visibility
     }
 
 }

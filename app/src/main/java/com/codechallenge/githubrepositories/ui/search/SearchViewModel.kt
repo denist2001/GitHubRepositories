@@ -2,20 +2,23 @@ package com.codechallenge.githubrepositories.ui.search
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.codechallenge.githubrepositories.network.Repository
+import com.codechallenge.githubrepositories.ui.model.RepoPresentation
+import kotlinx.coroutines.flow.Flow
 
 class SearchViewModel @ViewModelInject constructor(
     val repository: Repository
-) : ViewModel(){
+) : ViewModel() {
 
-}
+    lateinit var lastQuery: String
 
-sealed class LoginViewModelAction {
-    class AuthorisationRequest(val user: String, val password: String, val token: String?) :
-        LoginViewModelAction()
-}
+    fun foundedRepositories(authHeader: String, query: String): Flow<PagingData<RepoPresentation>> {
+        lastQuery = query
+        return repository.searchByRepositories(authHeader, query, 1)
+            .cachedIn(viewModelScope)
+    }
 
-sealed class LoginViewModelState {
-    class UserAuthorised(val userName: String, val authHeader: String) : LoginViewModelState()
-    class AuthorizationError(val message: String) : LoginViewModelState()
 }

@@ -7,7 +7,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.codechallenge.githubrepositories"
@@ -65,9 +65,18 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
 
+    //image downloading tools
+    implementation "io.coil-kt:coil:$coil_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
     testImplementation 'junit:junit:4.13'
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
 }

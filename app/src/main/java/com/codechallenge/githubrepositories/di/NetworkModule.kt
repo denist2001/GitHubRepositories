@@ -35,7 +35,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRepositoryService(retrofit: Retrofit): RepositoryService = retrofit.create(RepositoryService::class.java)
+    fun provideRepositoryService(retrofit: Retrofit): RepositoryService =
+        retrofit.create(RepositoryService::class.java)
 
     @Provides
     @Singleton

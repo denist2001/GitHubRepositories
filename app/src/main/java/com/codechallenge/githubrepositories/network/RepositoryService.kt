@@ -2,6 +2,7 @@ package com.codechallenge.githubrepositories.network
 
 import com.codechallenge.githubrepositories.data.model.auth.AuthResponse
 import com.codechallenge.githubrepositories.data.model.search.SearchResponse
+import com.codechallenge.githubrepositories.data.model.watchers.WatchersResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -34,12 +35,24 @@ interface RepositoryService {
     @Headers(
         "Accept: application/vnd.github.v3+json"
     )
-    @GET("search/repositories/")
-    fun searchRepos(
+    @GET("search/repositories")
+    suspend fun searchRepos(
+        @Header("Authorization") authHeader: String,
         @Query("q") searchQuery: String,
         @Query("sort") sortType: String,
         @Query("order") order: String,
         @Query("per_page") perPage: Int,
         @Query("page") page: Int
-    ): Call<SearchResponse>
+    ): SearchResponse
+
+    @Headers(
+        "Accept: application/vnd.github.v3+json"
+    )
+    @GET("/repos/{owner}/{repo}/subscribers")
+    suspend fun requestWatchers(
+        @Path("owner") userName: String,
+        @Path("repo") repositoryName: String,
+        @Query("per_page") perPage: Int,
+        @Query("page") page: Int
+    ): List<WatchersResponse>
 }

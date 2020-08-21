@@ -70,7 +70,14 @@ class LoginViewModel @ViewModelInject constructor(
                 401 -> state.postValue(LoginViewModelState.AuthorizationError("Two-factor authentication is active, please enter code."))
                 403 -> state.postValue(LoginViewModelState.AuthorizationError("Maximum number of login attempts exceeded. Please try again later."))
                 200 -> authResponse.body()
-                    ?.let { state.postValue(LoginViewModelState.UserAuthorised(userName, authHeader)) }
+                    ?.let {
+                        state.postValue(
+                            LoginViewModelState.UserAuthorised(
+                                userName,
+                                authHeader
+                            )
+                        )
+                    }
                 else -> state.postValue(LoginViewModelState.AuthorizationError("Cannot fetch data from GitHub!"))
             }
             Log.d("Login", "onResponse: ")
