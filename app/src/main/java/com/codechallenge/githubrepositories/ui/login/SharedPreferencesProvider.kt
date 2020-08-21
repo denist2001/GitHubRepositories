@@ -2,17 +2,14 @@ package com.codechallenge.githubrepositories.ui.login
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class SharedPreferencesProvider @Inject constructor(
-    @ApplicationContext val context: Context
+    @ApplicationContext val context: Context,
+    private val sharedPreferences: SharedPreferences
 ) {
-
-    private val sharedPreferences: SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
 
     fun containsUser(user: String): Boolean {
         return sharedPreferences.contains(user)

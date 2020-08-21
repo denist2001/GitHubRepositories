@@ -1,0 +1,138 @@
+[
+  {
+    "id": 456261921,
+    "url": "https://api.github.com/authorizations/456261921",
+    "app": {
+      "name": "Android Studio Github Integration Plugin access token",
+      "url": "https://docs.github.com/v3/oauth_authorizations/",
+      "client_id": "00000000000000000000"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "efe1586d",
+    "note": "Android Studio Github Integration Plugin access token",
+    "note_url": null,
+    "created_at": "2020-07-15T12:57:29Z",
+    "updated_at": "2020-07-15T12:57:29Z",
+    "scopes": [
+      "repo",
+      "gist"
+    ],
+    "fingerprint": null
+  },
+  {
+    "id": 367070583,
+    "url": "https://api.github.com/authorizations/367070583",
+    "app": {
+      "name": "Gist",
+      "url": "https://gist.github.com",
+      "client_id": "7e0a3cd836d3e544dbd9"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "3eeccb5a",
+    "note": null,
+    "note_url": null,
+    "created_at": "2019-12-29T13:06:02Z",
+    "updated_at": "2019-12-29T13:06:02Z",
+    "scopes": [],
+    "fingerprint": null
+  },
+  {
+    "id": 470966302,
+    "url": "https://api.github.com/authorizations/470966302",
+    "app": {
+      "name": "Gist",
+      "url": "https://gist.github.com",
+      "client_id": "7e0a3cd836d3e544dbd9"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "8884ea10",
+    "note": null,
+    "note_url": null,
+    "created_at": "2020-08-17T09:20:58Z",
+    "updated_at": "2020-08-17T09:20:59Z",
+    "scopes": [],
+    "fingerprint": null
+  },
+  {
+    "id": 472157150,
+    "url": "https://api.github.com/authorizations/472157150",
+    "app": {
+      "name": "Gist",
+      "url": "https://gist.github.com",
+      "client_id": "7e0a3cd836d3e544dbd9"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "36dc66f1",
+    "note": null,
+    "note_url": null,
+    "created_at": "2020-08-19T13:12:02Z",
+    "updated_at": "2020-08-19T13:12:02Z",
+    "scopes": [],
+    "fingerprint": null
+  },
+  {
+    "id": 453207207,
+    "url": "https://api.github.com/authorizations/453207207",
+    "app": {
+      "name": "issuehub",
+      "url": "http://issuehub.io",
+      "client_id": "8d3e82531f93a40d4b39"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "9141553f",
+    "note": null,
+    "note_url": null,
+    "created_at": "2020-07-08T18:35:30Z",
+    "updated_at": "2020-07-08T18:35:32Z",
+    "scopes": [
+      "repo"
+    ],
+    "fingerprint": null
+  },
+  {
+    "id": 367317270,
+    "url": "https://api.github.com/authorizations/367317270",
+    "app": {
+      "name": "github-importer-production",
+      "url": "https://import2.github.com/",
+      "client_id": "13bfecfe1cb843ac28c4"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "1cee836c",
+    "note": null,
+    "note_url": null,
+    "created_at": "2019-12-30T13:20:59Z",
+    "updated_at": "2019-12-30T13:20:59Z",
+    "scopes": [
+      "repo",
+      "user"
+    ],
+    "fingerprint": null
+  },
+  {
+    "id": 459419084,
+    "url": "https://api.github.com/authorizations/459419084",
+    "app": {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "client_id": "01b478c0264a1fbd7183"
+    },
+    "token": "",
+    "hashed_token": "",
+    "token_last_eight": "62cd28d0",
+    "note": null,
+    "note_url": null,
+    "created_at": "2020-07-22T10:08:19Z",
+    "updated_at": "2020-07-22T10:08:22Z",
+    "scopes": [
+      "user:email"
+    ],
+    "fingerprint": null
+  }
+]

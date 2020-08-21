@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
-
 @InternalCoroutinesApi
 fun <T> Flow<T>.throttleFirst(periodMillis: Long): Flow<T> {
     require(periodMillis > 0) { "period should be positive" }
